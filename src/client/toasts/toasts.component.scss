@@ -1,0 +1,134 @@
+$primary-color: #007bff;
+$secondary-color: #868e96;
+$success-color: #28a745;
+$danger-color: #dc3545;
+$warning-color: #ffc107;
+$info-color: #17a2b8;
+$light-color: #f8f9fa;
+$dark-color: #343a40;
+$text-color: #212529;
+
+.toast-panel {
+  z-index: 900;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: 90%;
+  max-width: 20rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family:
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      sans-serif;
+}
+
+@media (min-width: 768px) {
+  .toast-panel {
+    bottom: 2rem;
+  }
+}
+
+.toast-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-clip: border-box;
+  min-width: 0;
+  border-radius: 0.1rem;
+  background-color: $light-color;
+  color: $text-color;
+  margin-top: 1rem;
+  box-shadow:
+      rgba(0, 0, 0, 0.3) 0 .3rem .4rem -.2rem,
+      rgba(0, 0, 0, 0.15) 0 .2rem 1.5rem .3rem;
+
+  &.primary,
+  &.secondary,
+  &.success,
+  &.danger,
+  &.info,
+  &.dark {
+    color: $light-color;
+
+    .lifetime-progress {
+      background-color: $light-color;
+    }
+  }
+
+  &.warning,
+  &.light {
+    .lifetime-progress {
+      background-color: $primary-color;
+    }
+  }
+
+  &.primary {
+    background-color: $primary-color;
+  }
+
+  &.secondary {
+    background-color: $secondary-color;
+  }
+
+  &.success {
+    background-color: $success-color;
+  }
+
+  &.danger {
+    background-color: $danger-color;
+  }
+
+  &.warning {
+    background-color: $warning-color;
+  }
+
+  &.info {
+    background-color: $info-color;
+  }
+
+  &.light {
+    background-color: $light-color;
+  }
+
+  &.dark {
+    background-color: $dark-color;
+  }
+
+  .close-button {
+    border: 0;
+    background: none;
+    position: absolute;
+    top: .3rem;
+    right: .4rem;
+    line-height: .6;
+    font-weight: bold;
+    opacity: .3;
+    color: inherit;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .card-body {
+    padding: .5rem;
+    font-size: .8rem;
+
+    .title {
+      font-weight: bold;
+    }
+  }
+
+  .lifetime-progress {
+    display: flex;
+    height: 2px;
+    border-radius: 1px;
+    margin-bottom: -1px;
+  }
+}

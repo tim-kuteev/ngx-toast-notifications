@@ -1,0 +1,28 @@
+# source code
+/src
+.editorconfig
+tsconfig.json
+
+# compiled output
+/compiled
+*.tar.gz
+*.tgz
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+yarn-error.log

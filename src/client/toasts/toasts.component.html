@@ -1,0 +1,15 @@
+<div class="toast-panel">
+  <div *ngFor="let toast of activeToasts"
+       class="toast-card"
+       [@shrink]
+       [ngClass]="toast.type">
+    <div class="close-button" (click)="close(toast)">&times;</div>
+    <div class="card-body text-left">
+      <div *ngIf="toast.caption" class="title">{{toast.caption}}</div>
+      <div>{{toast.text}}</div>
+    </div>
+    <div class="lifetime-progress"
+         role="progressbar"
+         [@progress]="animationOptions(toast)"></div>
+  </div>
+</div>

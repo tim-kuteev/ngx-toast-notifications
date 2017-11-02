@@ -1,0 +1,33 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "inlineSources": false,
+    "lib": ["dom", "es2015"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "outDir": "./dist",
+    "paths": {
+      "@angular/core": ["./node_modules/@angular/core"],
+      "rxjs/*": ["./node_modules/rxjs/*"]
+    },
+    "rootDir": "./src",
+    "sourceMap": true,
+    "target": "es5",
+    "strictNullChecks": true,
+    "stripInternal": true,
+    "skipLibCheck": true
+  },
+  "files": [
+    "./src/index.ts"
+  ],
+  "angularCompilerOptions": {
+    "genDir": "compiled",
+    "skipMetadataEmit" : false,
+    "strictMetadataEmit": true
+  }
+}
