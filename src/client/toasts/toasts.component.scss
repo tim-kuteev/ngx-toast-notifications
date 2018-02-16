@@ -1,3 +1,6 @@
+$break-small: 576px;
+$break-medium: 768px;
+
 $primary-color: #007bff;
 $secondary-color: #868e96;
 $success-color: #28a745;
@@ -11,10 +14,9 @@ $text-color: #212529;
 .toast-panel {
   z-index: 900;
   position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  width: 90%;
-  max-width: 20rem;
+  bottom: 0;
+  right: 0;
+  width: 100%;
   font-size: 1rem;
   line-height: 1.5;
   font-family:
@@ -25,10 +27,14 @@ $text-color: #212529;
       "Helvetica Neue",
       Arial,
       sans-serif;
-}
 
-@media (min-width: 768px) {
-  .toast-panel {
+  @media (min-width: $break-small) {
+    bottom: 1rem;
+    right: 1rem;
+    max-width: 20rem;
+  }
+
+  @media (min-width: $break-medium) {
     bottom: 2rem;
   }
 }
@@ -39,13 +45,16 @@ $text-color: #212529;
   flex-direction: column;
   background-clip: border-box;
   min-width: 0;
-  border-radius: 0.1rem;
   background-color: $light-color;
   color: $text-color;
   margin-top: 1rem;
   box-shadow:
       rgba(0, 0, 0, 0.3) 0 .3rem .4rem -.2rem,
       rgba(0, 0, 0, 0.15) 0 .2rem 1.5rem .3rem;
+
+  @media (min-width: $break-small) {
+    border-radius: 0.1rem;
+  }
 
   &.primary,
   &.secondary,
@@ -103,13 +112,20 @@ $text-color: #212529;
     border: 0;
     background: none;
     position: absolute;
-    top: .3rem;
-    right: .4rem;
+    font-size: 1.6rem;
+    top: .5rem;
+    right: .8rem;
     line-height: .6;
     font-weight: bold;
     opacity: .3;
     color: inherit;
     cursor: pointer;
+
+    @media (min-width: $break-small) {
+      font-size: 1rem;
+      top: .3rem;
+      right: .4rem;
+    }
 
     &:hover {
       opacity: 1;
@@ -117,8 +133,12 @@ $text-color: #212529;
   }
 
   .card-body {
-    padding: .5rem;
+    padding: .5rem 2.2rem .5rem .5rem;
     font-size: .8rem;
+
+    @media (min-width: $break-small) {
+      padding-right: 1rem;
+    }
 
     .title {
       font-weight: bold;
@@ -128,7 +148,7 @@ $text-color: #212529;
   .lifetime-progress {
     display: flex;
     height: 2px;
+    width: 0;
     border-radius: 1px;
-    margin-bottom: -1px;
   }
 }
