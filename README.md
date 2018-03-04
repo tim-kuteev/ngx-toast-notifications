@@ -94,8 +94,3 @@ ngx-toast-notifications without Bootstrap installed.
 ## License
 
 MIT
-
-## Important note
-
-Since the Angular version 5.0.3 [nested animations is broken](https://github.com/angular/angular/issues/20823). So the
-lifetime counter may be displayed incorrectly until the issue is resolved.
