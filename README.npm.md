@@ -1,4 +1,4 @@
-# Angular2+ Toast Notifications
+# Angular Toast Notifications
 
 Toast notifications for Angular applications.
 
@@ -6,5 +6,5 @@ See instruction on [GitHub Repository](https://github.com/tim-kuteev/ngx-toast-n
 
 ## Install
 ```bash
-npm i ngx-toast-notifications --save
+npm install --save ngx-toast-notifications
 ```
