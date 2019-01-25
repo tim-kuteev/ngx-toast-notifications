@@ -1,18 +1,21 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ToastNotifications } from './toast-natifications';
-import { ToastNotificationConfig } from './toast-notification.config';
+import { ToastNotificationsConfig } from '../toast-notifications.config';
+import { ToastNotificationsModule } from '../toast-notifications.module';
 
-const defaultConfig = <ToastNotificationConfig>{lifetime: 8000};
+const defaultConfig = <ToastNotificationsConfig>{lifetime: 8000};
 
 @NgModule({
   imports: [
-    CommonModule,
+    ToastNotificationsModule,
   ],
   providers: [
     ToastNotifications,
   ],
 })
+/**
+ * @deprecated since version 1.0.0 use ToastNotificationsModule
+ */
 export class ToastNotificationCoreModule {
 
   constructor(@Optional() @SkipSelf() parentModule: ToastNotificationCoreModule) {
@@ -25,7 +28,7 @@ export class ToastNotificationCoreModule {
     return {
       ngModule: ToastNotificationCoreModule,
       providers: [
-        {provide: ToastNotificationConfig, useValue: config}
+        {provide: ToastNotificationsConfig, useValue: config}
       ]
     };
   }

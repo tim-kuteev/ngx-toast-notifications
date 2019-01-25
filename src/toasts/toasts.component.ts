@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { animate, animateChild, query, style, transition, trigger } from '@angular/animations';
 import { timer } from 'rxjs';
-import { ToastNotificationConfig } from '../../core/toast-notification.config';
-import { ToastNotifications } from '../../core/toast-natifications';
-import { Toast } from '../../core/toast.interface';
+import { ToastNotificationsConfig } from '../toast-notifications.config';
+import { ToastConfig } from '../toast.config';
 
 const nestedTransition = transition('* => *', [
   query('@*', animateChild(), {optional: true})
@@ -36,27 +35,24 @@ const progressTransition = transition('void => *', [
 })
 export class ToastsComponent {
 
-  activeToasts: Set<Toast> = new Set<Toast>();
+  activeToasts: Set<ToastConfig> = new Set<ToastConfig>();
 
   constructor(
-      private config: ToastNotificationConfig,
-      private toastNotifications: ToastNotifications) {
-    this.subscribe();
+      private _config: ToastNotificationsConfig,
+  ) {
   }
 
-  close(toast: Toast) {
+  close(toast: ToastConfig) {
     this.activeToasts.delete(toast);
   }
 
-  animationOptions(toast: Toast): any {
+  animationOptions(toast: ToastConfig): any {
     return {value: '*', params: {lifetime: `${toast.lifetime}ms`}};
   }
 
-  private subscribe() {
-    this.toastNotifications.subscribe(toast => {
-      toast.lifetime = Math.ceil(toast.lifetime && toast.lifetime > -1 ? toast.lifetime : this.config.lifetime);
-      this.activeToasts.add(toast);
-      toast.lifetime !== 0 && timer(toast.lifetime).subscribe(() => this.close(toast));
-    });
+  next(toast: ToastConfig) {
+    toast.lifetime = Math.ceil(toast.lifetime && toast.lifetime > -1 ? toast.lifetime : this._config.lifetime);
+    this.activeToasts.add(toast);
+    toast.lifetime !== 0 && timer(toast.lifetime).subscribe(() => this.close(toast));
   }
 }

@@ -1,17 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ToastsComponent } from './toasts/toasts.component';
 
-@NgModule({
-  imports: [
-    CommonModule,
-  ],
-  declarations: [
-    ToastsComponent,
-  ],
-  exports: [
-    ToastsComponent,
-  ],
-})
+@NgModule()
+/**
+ * @deprecated since version 1.0.0
+ */
 export class ToastNotificationClientModule {
 }
