@@ -3,7 +3,7 @@ import { ToastNotifications } from './toast-natifications';
 import { ToastNotificationsConfig } from '../toast-notifications.config';
 import { ToastNotificationsModule } from '../toast-notifications.module';
 
-const defaultConfig = <ToastNotificationsConfig>{lifetime: 8000};
+const defaultConfig: {lifetime?: number, duration?: number} = {lifetime: 8000};
 
 @NgModule({
   imports: [
@@ -28,7 +28,7 @@ export class ToastNotificationCoreModule {
     return {
       ngModule: ToastNotificationCoreModule,
       providers: [
-        {provide: ToastNotificationsConfig, useValue: config}
+        {provide: ToastNotificationsConfig, useValue: {duration: config.duration || config.lifetime}}
       ]
     };
   }

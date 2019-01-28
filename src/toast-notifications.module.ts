@@ -1,19 +1,19 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastNotificationsConfig } from './toast-notifications.config';
-import { ToastsComponent } from './toasts/toasts.component';
+import { ToastContainerComponent } from './toast-container/toast-container.component';
 
-const defaultConfig = <ToastNotificationsConfig>{lifetime: 8000};
+const defaultConfig: ToastNotificationsConfig = {duration: 8000};
 
 @NgModule({
   imports: [
     CommonModule,
   ],
   declarations: [
-    ToastsComponent,
+    ToastContainerComponent,
   ],
   entryComponents: [
-    ToastsComponent,
+    ToastContainerComponent,
   ],
 })
 export class ToastNotificationsModule {

@@ -10,13 +10,13 @@ import {
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ToastNotificationsModule } from './toast-notifications.module';
-import { ToastsComponent } from './toasts/toasts.component';
+import { ToastContainerComponent } from './toast-container/toast-container.component';
 
 @Injectable({providedIn: ToastNotificationsModule})
 export class ToastContainerService implements OnDestroy {
 
   private _containerElement: HTMLElement;
-  private _componentRef: ComponentRef<ToastsComponent>;
+  private _componentRef: ComponentRef<ToastContainerComponent>;
 
   constructor(
     @Inject(DOCUMENT) private _document: any,
@@ -31,7 +31,7 @@ export class ToastContainerService implements OnDestroy {
     this._destroyContainer();
   }
 
-  get ref(): ComponentRef<ToastsComponent> {
+  get ref(): ComponentRef<ToastContainerComponent> {
     if (!this._componentRef) {
       this._attach();
     }
@@ -40,7 +40,7 @@ export class ToastContainerService implements OnDestroy {
 
   private _attach() {
     this._detach();
-    const componentFactory = this._factoryResolver.resolveComponentFactory(ToastsComponent);
+    const componentFactory = this._factoryResolver.resolveComponentFactory(ToastContainerComponent);
     this._componentRef = componentFactory.create(this._injector);
     const hostView = this._componentRef.hostView as EmbeddedViewRef<any>;
     this._appRef.attachView(hostView);

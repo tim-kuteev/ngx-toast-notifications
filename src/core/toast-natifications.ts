@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastConfig } from '../toast.config';
+import { ToastConfig, ToastType } from '../toast.config';
 import { Toaster } from '../toaster';
 
 @Injectable()
@@ -16,7 +16,13 @@ export class ToastNotifications {
   /**
    * @deprecated since version 1.0.0
    */
-  next(toast: ToastConfig) {
-    this._toaster.next(toast);
+  next(toast: {text: string, caption?: string, type?: ToastType, lifetime: number, duration: number}) {
+    const config: ToastConfig = {
+      text: toast.text,
+      caption: toast.caption,
+      type: toast.type,
+      duration: toast.duration || toast.lifetime,
+    };
+    this._toaster.next(config);
   }
 }

@@ -1,3 +1,3 @@
 export class ToastNotificationsConfig {
-  lifetime: number;
+  duration?: number;
 }

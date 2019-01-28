@@ -41,6 +41,7 @@ $text-color: #212529;
 
 .toast-card {
   position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   background-clip: border-box;

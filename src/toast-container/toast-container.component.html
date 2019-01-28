@@ -1,0 +1,14 @@
+<div class="toast-panel">
+  <div *ngFor="let toast of toastHandler.toasts" [@nested]>
+    <div class="toast-card" [ngClass]="toast.type || 'light'" [@shrink]>
+      <div class="close-button" (click)="toast.close()">&times;</div>
+      <div class="card-body">
+        <div *ngIf="toast.caption" class="title">{{toast.caption}}</div>
+        <div>{{toast.text}}</div>
+      </div>
+      <div class="lifetime-progress"
+           role="progressbar"
+           [@progress]="{value: '*', params: {duration: toast.duration + 'ms'}}"></div>
+    </div>
+  </div>
+</div>
