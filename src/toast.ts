@@ -1,27 +1,30 @@
-import { Observable, Subject, timer } from 'rxjs';
-import { ToastConfig } from './toast.config';
+import { Observable, Subject } from 'rxjs';
+import { Type } from '@angular/core';
+import { ToastConfig, ToastType } from './toast.config';
 
-export class Toast extends ToastConfig {
+export class Toast {
+
+  readonly duration: number;
+  readonly text: string;
+  readonly caption: string;
+  readonly type: ToastType;
+  readonly component: Type<any>;
 
   private readonly _closeFunction: Function;
   private readonly _onClose = new Subject<any>();
-  private _isActive: boolean;
+  private _timeoutId: any;
 
   constructor(
       config: ToastConfig,
       closeFunction: Function,
   ) {
-    super();
+    this.duration = config.duration;
     this.text = config.text;
     this.caption = config.caption;
     this.type = config.type;
-    this.duration = config.duration;
+    this.component = config.component;
     this._closeFunction = closeFunction;
-    this._isActive = true;
-
-    if (this.duration > 0) {
-      timer(this.duration).subscribe(() => this._isActive && this.close());
-    }
+    this._setTimeout();
   }
 
   get onClose(): Observable<any> {
@@ -34,6 +37,18 @@ export class Toast extends ToastConfig {
       this._onClose.complete();
     }
     this._closeFunction(this);
-    this._isActive = false;
+    this._clearTimeout();
+  }
+
+  private _setTimeout() {
+    if (this.duration > 0) {
+      this._timeoutId = setTimeout(() => this.close(), this.duration);
+    }
+  }
+
+  private _clearTimeout() {
+    if (this._timeoutId) {
+      clearTimeout(this._timeoutId);
+    }
   }
 }

@@ -1,0 +1,5 @@
+<div class="close-button" (click)="toast.close()">&times;</div>
+<div class="content-body">
+  <div *ngIf="toast.caption" class="title">{{toast.caption}}</div>
+  <div>{{toast.text}}</div>
+</div>

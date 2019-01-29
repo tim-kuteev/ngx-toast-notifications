@@ -54,7 +54,9 @@ $text-color: #212529;
       rgba(0, 0, 0, 0.15) 0 .2rem 1.5rem .3rem;
 
   @media (min-width: $break-small) {
-    border-radius: 0.1rem;
+    border-radius: .1rem;
+    box-shadow:
+        rgba(0, 0, 0, .15) 0 .2rem 1.5rem .3rem;
   }
 
   &.primary,
@@ -107,43 +109,6 @@ $text-color: #212529;
 
   &.dark {
     background-color: $dark-color;
-  }
-
-  .close-button {
-    border: 0;
-    background: none;
-    position: absolute;
-    font-size: 1.6rem;
-    top: .5rem;
-    right: .8rem;
-    line-height: .6;
-    font-weight: bold;
-    opacity: .3;
-    color: inherit;
-    cursor: pointer;
-
-    @media (min-width: $break-small) {
-      font-size: 1rem;
-      top: .3rem;
-      right: .4rem;
-    }
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  .card-body {
-    padding: .5rem 2.2rem .5rem .5rem;
-    font-size: .8rem;
-
-    @media (min-width: $break-small) {
-      padding-right: 1rem;
-    }
-
-    .title {
-      font-weight: bold;
-    }
   }
 
   .lifetime-progress {

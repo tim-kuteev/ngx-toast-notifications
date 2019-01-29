@@ -2,6 +2,8 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { ToastNotificationsConfig } from './toast-notifications.config';
 import { ToastContainerComponent } from './toast-container/toast-container.component';
+import { BasicToastContentComponent } from './toast-content/basic-toast-content.component';
+import { ToastContentDirective } from './toast-content/toast-content.directive';
 
 const defaultConfig: ToastNotificationsConfig = {duration: 8000};
 
@@ -11,9 +13,12 @@ const defaultConfig: ToastNotificationsConfig = {duration: 8000};
   ],
   declarations: [
     ToastContainerComponent,
+    BasicToastContentComponent,
+    ToastContentDirective,
   ],
   entryComponents: [
     ToastContainerComponent,
+    BasicToastContentComponent,
   ],
 })
 export class ToastNotificationsModule {

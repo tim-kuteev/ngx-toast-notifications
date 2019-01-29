@@ -16,13 +16,14 @@ export class ToastNotifications {
   /**
    * @deprecated since version 1.0.0
    */
-  next(toast: {text: string, caption?: string, type?: ToastType, lifetime: number, duration: number}) {
+  next(toast: {text: string, caption?: string, type?: ToastType, lifetime?: number, duration?: number}) {
     const config: ToastConfig = {
       text: toast.text,
       caption: toast.caption,
       type: toast.type,
       duration: toast.duration || toast.lifetime,
+      component: null,
     };
-    this._toaster.next(config);
+    this._toaster.open(config);
   }
 }

@@ -16,15 +16,14 @@ npm install --save ngx-toast-notifications
 #### Import modules:
 
 ```typescript
-import {ToastNotificationClientModule, ToastNotificationCoreModule} from "ngx-toast-notifications";
+import {ToastNotificationsModule} from "ngx-toast-notifications";
 
 @NgModule({
   ...
   imports: [
     ...
     BrowserAnimationsModule, // required
-    ToastNotificationCoreModule.forRoot(), // core module
-    ToastNotificationClientModule, // component module
+    ToastNotificationsModule.forRoot(),
   ],
   ...
 })
@@ -34,53 +33,47 @@ export class AppModule {}
 Component module is set separately for purpose of AOT compilation and lazy initialization. It can be imported only in
 the module where you intend to use toast notifications.
 
-#### Add a notification directive in the root template of the module:
-
-```html
-<toast-notifications></toast-notifications>
-```
-The best way is to add it on the top of the AppComponent template so that notifications are displayed over all pages of
-the application.
-
 #### Use service to send a toast:
 
 ```typescript
-import {ToastNotifications} from "ngx-toast-notifications";
+import {Toaster} from "ngx-toast-notifications";
 
-...
-export class MyComponent implements OnInit {
+@Component({
+  template: '<button (click)="showToast()">Show Toast</button>',
+})
+export class MyComponent {
 
-  constructor(private toasts: ToastNotifications) {
+  constructor(private toaster: Toaster) {
   }
 
-  ngOnInit(): void {
-    this.toasts.next({text: 'Hello world!'});
+  showToast() {
+    this.toaster.open({text: 'Hello world!'});
   }
 }
 ```
 
 ## Demo
 
-#### [Try interactive demo on stackblitz](https://stackblitz.com/edit/ngx-toast-notifications?embed=1&file=app/app.component.ts)
+**[Try interactive demo on stackblitz](https://stackblitz.com/edit/ngx-toast-notifications?embed=1&file=app/app.component.ts)**
 
 ## Configurations
 
-#### Lifetime
+#### Toast duration
 
-When importing the core module, you can specify the lifetime of the toasts (the time that they remain on the screen
+When importing the core module, you can specify the duration of the toasts (the time they remain on the screen
 before disappearing). By default it's 8 seconds.
 ```typescript
-  ToastNotificationCoreModule.forRoot({lifetime: 6000}), // lifetime is set to 6 seconds
+  ToastNotificationsModule.forRoot({duration: 6000}), // lifetime is set to 6 seconds
 ```
-Also you can specify lifetime for a particular toast:
+Also you can specify duration for a particular toast:
 ```typescript
-  this.toasts.next({text: 'Reed fast!', lifetime: 3000});
+  this.toaster.open({text: 'Reed fast!', duration: 3000});
 ```
 
 #### Type
 
 ```typescript
-  this.toasts.next({text: 'Hooray!', type: 'primary'});
+  this.toaster.open({text: 'Hooray!', type: 'primary'});
 ```
 
 There are eight types of toasts so far.
