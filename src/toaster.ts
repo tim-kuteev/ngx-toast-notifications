@@ -1,31 +1,32 @@
-import { Injectable, Type } from '@angular/core';
-import { ToastNotificationsModule } from './toast-notifications.module';
+import { Inject, Injectable, Type } from '@angular/core';
 import { ToastConfig } from './toast.config';
 import { ToastContainerService } from './toast-container.service';
-import { ToastNotificationsConfig } from './toast-notifications.config';
+import { TOAST_NOTIFICATIONS_CONFIG, ToastNotificationsConfig } from './toast-notifications.config';
 import { BasicToastContentComponent } from './toast-content/basic-toast-content.component';
 import { Toast } from './toast';
 
-@Injectable({providedIn: ToastNotificationsModule})
+const DEFAULT_CONFIG: ToastConfig = {duration: 8000, component: BasicToastContentComponent};
+
+@Injectable()
 export class Toaster {
 
   constructor(
+      @Inject(TOAST_NOTIFICATIONS_CONFIG) private _config: ToastNotificationsConfig,
       private _containerService: ToastContainerService,
-      private _config: ToastNotificationsConfig,
   ) {
   }
 
-  open(toastConfig: ToastConfig): Toast {
-    if (!toastConfig.text && !toastConfig.component) {
-      console.error('Missing parameters to open a Toast. Please provide either [text] or [component].', toastConfig);
-      throw new Error('Failed to open a Toast.');
+  open(text: string): Toast;
+  open(config: ToastConfig): Toast;
+  open(component: Type<any>, config?: ToastConfig): Toast;
+  open(config: ToastConfig | string | Type<any>, componentConfig?: ToastConfig): Toast {
+    if (typeof config === 'string') {
+      config = {text: config as string};
     }
-    const config = <ToastConfig>{...this._config, component: BasicToastContentComponent, ...toastConfig};
+    if (config instanceof Type) {
+      config = {...componentConfig, component: config as Type<any>};
+    }
+    config = {...DEFAULT_CONFIG, ...this._config, ...config};
     return this._containerService.ref.instance.add(config);
-  }
-
-  openComponent(component: Type<any>, toastConfig?: ToastConfig): Toast {
-    const config = <ToastConfig>{...toastConfig, component: component};
-    return this.open(config);
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ToastConfig, ToastType } from '../toast.config';
+import { ToastConfig } from '../toast.config';
+import { ToastType } from '../toast-notifications.config';
 import { Toaster } from '../toaster';
 
 @Injectable()

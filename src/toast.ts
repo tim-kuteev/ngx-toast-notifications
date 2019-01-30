@@ -1,6 +1,7 @@
 import { Observable, Subject } from 'rxjs';
 import { Type } from '@angular/core';
-import { ToastConfig, ToastType } from './toast.config';
+import { ToastType } from './toast-notifications.config';
+import { ToastConfig } from './toast.config';
 
 export class Toast {
 

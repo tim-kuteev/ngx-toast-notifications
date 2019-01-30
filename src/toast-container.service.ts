@@ -9,10 +9,9 @@ import {
   OnDestroy
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { ToastNotificationsModule } from './toast-notifications.module';
 import { ToastContainerComponent } from './toast-container/toast-container.component';
 
-@Injectable({providedIn: ToastNotificationsModule})
+@Injectable()
 export class ToastContainerService implements OnDestroy {
 
   private _containerElement: HTMLElement;

@@ -49,14 +49,13 @@ $text-color: #212529;
   background-color: $light-color;
   color: $text-color;
   margin-top: 1rem;
-  box-shadow:
-      rgba(0, 0, 0, 0.3) 0 .3rem .4rem -.2rem,
-      rgba(0, 0, 0, 0.15) 0 .2rem 1.5rem .3rem;
+  box-shadow: rgba(0, 0, 0, .15) 0 .2rem 1.5rem .3rem;
 
   @media (min-width: $break-small) {
     border-radius: .1rem;
     box-shadow:
-        rgba(0, 0, 0, .15) 0 .2rem 1.5rem .3rem;
+      rgba(0, 0, 0, 0.2) 0 .3rem .4rem -.2rem,
+      rgba(0, 0, 0, 0.15) 0 .2rem 1.5rem .3rem;
   }
 
   &.primary,

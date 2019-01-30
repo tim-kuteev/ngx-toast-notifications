@@ -1,11 +1,11 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToastNotificationsConfig } from './toast-notifications.config';
+import { TOAST_NOTIFICATIONS_CONFIG, ToastNotificationsConfig } from './toast-notifications.config';
 import { ToastContainerComponent } from './toast-container/toast-container.component';
 import { BasicToastContentComponent } from './toast-content/basic-toast-content.component';
 import { ToastContentDirective } from './toast-content/toast-content.directive';
-
-const defaultConfig: ToastNotificationsConfig = {duration: 8000};
+import { Toaster } from './toaster';
+import { ToastContainerService } from './toast-container.service';
 
 @NgModule({
   imports: [
@@ -20,6 +20,10 @@ const defaultConfig: ToastNotificationsConfig = {duration: 8000};
     ToastContainerComponent,
     BasicToastContentComponent,
   ],
+  providers: [
+    Toaster,
+    ToastContainerService,
+  ],
 })
 export class ToastNotificationsModule {
 
@@ -29,11 +33,11 @@ export class ToastNotificationsModule {
     }
   }
 
-  static forRoot(config = defaultConfig): ModuleWithProviders {
+  static forRoot(config: ToastNotificationsConfig = {}): ModuleWithProviders {
     return {
       ngModule: ToastNotificationsModule,
       providers: [
-        {provide: ToastNotificationsConfig, useValue: config}
+        {provide: TOAST_NOTIFICATIONS_CONFIG, useValue: config}
       ]
     };
   }
