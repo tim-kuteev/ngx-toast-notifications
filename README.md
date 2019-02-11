@@ -30,9 +30,6 @@ import {ToastNotificationsModule} from "ngx-toast-notifications";
 export class AppModule {}
 ```
 
-Component module is set separately for purpose of AOT compilation and lazy initialization. It can be imported only in
-the module where you intend to use toast notifications.
-
 #### Use service to send a toast:
 
 ```typescript
@@ -47,7 +44,7 @@ export class MyComponent {
   }
 
   showToast() {
-    this.toaster.open({text: 'Hello world!'});
+    this.toaster.open('Hello world!');
   }
 }
 ```
@@ -58,31 +55,47 @@ export class MyComponent {
 
 ## Configurations
 
-#### Toast duration
+### ToastNotificationsConfig
 
-When importing the core module, you can specify the duration of the toasts (the time they remain on the screen
-before disappearing). By default it's 8 seconds.
-```typescript
-  ToastNotificationsModule.forRoot({duration: 6000}), // lifetime is set to 6 seconds
-```
-Also you can specify duration for a particular toast:
-```typescript
-  this.toaster.open({text: 'Reed fast!', duration: 3000});
-```
+Global toast configuration, that you can specify when importing the ToastNotificationsModule.
 
-#### Type
+| Parameter     | Type                          | Description                                                                        |
+| ------------- | ----------------------------- | ---------------------------------------------------------------------------------- |
+| duration      | number                        | The length of time in milliseconds before dismissing. (default value is 8 sec)     |
+| type          | ToastType                     | Type of toast color scheme                                                         |
+| component     | Type from '@angular/core'     | Custom component to replace default toast content (more on that below)             |
 
-```typescript
-  this.toaster.open({text: 'Hooray!', type: 'primary'});
-```
-
-There are eight types of toasts so far.
+#### ToastType
 ```typescript
 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark'
 ```
 Each type corresponds to [Bootstrap4](https://getbootstrap.com/docs/4.0/utilities/colors/#background-color) ones by
 color. This means that if you use Bootstrap in your project, it will match the style, but you can still use
 ngx-toast-notifications without Bootstrap installed.
+
+#### Example
+
+```typescript
+  ToastNotificationsModule.forRoot({duration: 6000, type: 'primary', component: MyComponent}),
+```
+
+
+### ToastConfig
+*extends **ToastNotificationsConfig***
+
+Configuration for a particular toast.
+
+| Parameter     | Type                          | Description                                                                        |
+| ------------- | ----------------------------- | ---------------------------------------------------------------------------------- |
+| text          | string                        | Main text for the toast                                                            |
+| caption       | string                        | Toast caption                                                                      |
+
+
+#### Example
+
+```typescript
+  this.toaster.open({text: 'Pizza party', caption: 'Hooray', duration: 4000, type: 'primary', component: MyComponent});
+```
 
 ## License
 
