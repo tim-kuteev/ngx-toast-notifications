@@ -126,7 +126,7 @@ export class CustomToastComponent {
     CustomToastComponent,
   ],
   entryComponents: [
-    CustomToastComponent,
+    CustomToastComponent, // this declaration is required for imperative loading
   ],
   imports: [
     ...
@@ -140,7 +140,7 @@ export class AppModule {}
 #### or explicitly:
 
 ```typescript
-  this.toaster.open(TestComponent, {text: 'This is text for custom toast'});
+  this.toaster.open(CustomToastComponent, {text: 'This is text for custom toast'});
 ```
 
 #### [Stackblitz example](https://stackblitz.com/edit/ngx-toast-notifications-custom?embed=1&file=app/app.component.ts&hideExplorer=1)
