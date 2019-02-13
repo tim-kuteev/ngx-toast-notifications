@@ -16,7 +16,7 @@ npm install --save ngx-toast-notifications
 #### Import modules:
 
 ```typescript
-import {ToastNotificationsModule} from "ngx-toast-notifications";
+import { ToastNotificationsModule } from 'ngx-toast-notifications';
 
 @NgModule({
   ...
@@ -33,7 +33,7 @@ export class AppModule {}
 #### Use service to send a toast:
 
 ```typescript
-import {Toaster} from "ngx-toast-notifications";
+import { Toaster } from 'ngx-toast-notifications';
 
 @Component({
   template: '<button (click)="showToast()">Show Toast</button>',
@@ -51,7 +51,7 @@ export class MyComponent {
 
 ## Demo
 
-**[Try interactive demo on stackblitz](https://stackblitz.com/edit/ngx-toast-notifications?embed=1&file=app/app.component.ts)**
+**[Try interactive demo on stackblitz](https://stackblitz.com/edit/ngx-toast-notifications?embed=1&file=app/app.component.ts&hideExplorer=1)**
 
 ## Configurations
 
@@ -61,7 +61,7 @@ Global toast configuration, that you can specify when importing the ToastNotific
 
 | Parameter     | Type                          | Description                                                                        |
 | ------------- | ----------------------------- | ---------------------------------------------------------------------------------- |
-| duration      | number                        | The length of time in milliseconds before dismissing. (default value is 8 sec)     |
+| duration      | number                        | The length of time in milliseconds before dismissing (default value is 8 sec)     |
 | type          | ToastType                     | Type of toast color scheme                                                         |
 | component     | Type from '@angular/core'     | Custom component to replace default toast content (more on that below)             |
 
@@ -83,7 +83,7 @@ ngx-toast-notifications without Bootstrap installed.
 ### ToastConfig
 *extends **ToastNotificationsConfig***
 
-Configuration for a particular toast.
+Configuration for a specific toast.
 
 | Parameter     | Type                          | Description                                                                        |
 | ------------- | ----------------------------- | ---------------------------------------------------------------------------------- |
@@ -96,6 +96,54 @@ Configuration for a particular toast.
 ```typescript
   this.toaster.open({text: 'Pizza party', caption: 'Hooray', duration: 4000, type: 'primary', component: MyComponent});
 ```
+
+## Custom Toasts
+
+You can provide custom component to replace default toast content.
+
+#### Simple custom toast component:
+
+```typescript
+@Component({
+  template:
+  '<div style="padding: 1rem;">' +
+  '<div>{{toast.text}}</div>' +
+  '<button (click)="toast.close()">Close</button>' +
+  '</div>',
+})
+export class CustomToastComponent {
+  @Input() toast: Toast;
+}
+```
+
+#### Provide it globally as a default one:
+
+```typescript
+@NgModule({
+  ...
+  declarations: [
+    ...
+    CustomToastComponent,
+  ],
+  entryComponents: [
+    CustomToastComponent,
+  ],
+  imports: [
+    ...
+    ToastNotificationsModule.forRoot({component: CustomToastComponent}),
+  ],
+  ...
+})
+export class AppModule {}
+```
+
+#### or explicitly:
+
+```typescript
+  this.toaster.open(TestComponent, {text: 'This is text for custom toast'});
+```
+
+#### [Stackblitz example](https://stackblitz.com/edit/ngx-toast-notifications-custom?embed=1&file=app/app.component.ts&hideExplorer=1)
 
 ## License
 
