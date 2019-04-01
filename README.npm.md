@@ -1,8 +1,8 @@
 # Angular Toast Notifications
 
-Toast notifications for Angular applications.
+A lightweight and simple to use library for [Angular](https://github.com/angular/angular) applications that provides an easy way to display toast notifications.
 
-See instruction on [GitHub Repository](https://github.com/tim-kuteev/ngx-toast-notifications)
+See full description on [GitHub Repository](https://github.com/tim-kuteev/ngx-toast-notifications)
 
 ## Install
 ```bash

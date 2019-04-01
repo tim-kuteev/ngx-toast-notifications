@@ -31,5 +31,5 @@
     "build": "ngc -p ./tsconfig.json && tsc -p ./tsconfig.json"
   },
   "typings": "dist/index.d.ts",
-  "version": "1.0.1"
+  "version": "1.0.2"
 }

@@ -1,6 +1,6 @@
 # Angular Toast Notifications
 
-It's a simple library for [Angular](https://github.com/angular/angular) applications which provides the easy way to display toast notifications.
+A lightweight and simple to use library for [Angular](https://github.com/angular/angular) applications that provides an easy way to display toast notifications.
 
 ![Toast Sample](https://i.imgur.com/yj5LT3f.png)
 
@@ -30,7 +30,7 @@ import { ToastNotificationsModule } from 'ngx-toast-notifications';
 export class AppModule {}
 ```
 
-#### Use service to send a toast:
+#### Use the Toaster service to send a toast:
 
 ```typescript
 import { Toaster } from 'ngx-toast-notifications';
@@ -55,9 +55,21 @@ export class MyComponent {
 
 ## Configurations
 
+`Toaster.open` returns a `Toast` object. This can be used to close toast or subscribe for an event when the toast is closed.
+
+```typescript
+const toast = this.toaster.open('Message');
+
+toast.onClose.subscribe((result) => {
+  // toast closed
+});
+
+toast.close('success');
+```
+
 ### ToastNotificationsConfig
 
-Global toast configuration, that you can specify when importing the ToastNotificationsModule.
+Global toast configuration that you can specify when importing the ToastNotificationsModule.
 
 | Parameter     | Type                          | Description                                                                        |
 | ------------- | ----------------------------- | ---------------------------------------------------------------------------------- |
@@ -76,7 +88,7 @@ ngx-toast-notifications without Bootstrap installed.
 #### Example
 
 ```typescript
-  ToastNotificationsModule.forRoot({duration: 6000, type: 'primary', component: MyComponent}),
+ToastNotificationsModule.forRoot({duration: 6000, type: 'primary', component: MyComponent}),
 ```
 
 
@@ -94,12 +106,12 @@ Configuration for a specific toast.
 #### Example
 
 ```typescript
-  this.toaster.open({text: 'Pizza party', caption: 'Hooray', duration: 4000, type: 'primary', component: MyComponent});
+this.toaster.open({text: 'Pizza party', caption: 'Hooray', duration: 4000, type: 'primary', component: MyComponent});
 ```
 
 ## Custom Toasts
 
-You can provide custom component to replace default toast content.
+You can provide a given component to replace default toast content.
 
 #### Simple custom toast component:
 
@@ -116,7 +128,7 @@ export class CustomToastComponent {
 }
 ```
 
-#### Provide it globally as a default one:
+#### Declaration:
 
 ```typescript
 @NgModule({
@@ -128,19 +140,21 @@ export class CustomToastComponent {
   entryComponents: [
     CustomToastComponent, // this declaration is required for imperative loading
   ],
-  imports: [
-    ...
-    ToastNotificationsModule.forRoot({component: CustomToastComponent}),
-  ],
   ...
 })
 export class AppModule {}
 ```
 
+#### Provide it globally as a default:
+
+```typescript
+ToastNotificationsModule.forRoot({component: CustomToastComponent}),
+```
+
 #### or explicitly:
 
 ```typescript
-  this.toaster.open(CustomToastComponent, {text: 'This is text for custom toast'});
+this.toaster.open(CustomToastComponent, {text: 'This is text for custom toast'});
 ```
 
 #### [Stackblitz example](https://stackblitz.com/edit/ngx-toast-notifications-custom?embed=1&file=app/app.component.ts&hideExplorer=1)
