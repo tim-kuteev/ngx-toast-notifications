@@ -5,7 +5,9 @@ export const TOAST_NOTIFICATIONS_CONFIG = new InjectionToken<ToastNotificationsC
 export type ToastType = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
 
 export interface ToastNotificationsConfig {
+  autoClose?: boolean;
   duration?: number;
   type?: ToastType;
   component?: Type<any>;
+  preventDuplicates?: boolean;
 }

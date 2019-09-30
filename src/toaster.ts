@@ -5,7 +5,11 @@ import { TOAST_NOTIFICATIONS_CONFIG, ToastNotificationsConfig } from './toast-no
 import { BasicToastContentComponent } from './toast-content/basic-toast-content.component';
 import { Toast } from './toast';
 
-const DEFAULT_CONFIG: ToastConfig = {duration: 8000, component: BasicToastContentComponent};
+const DEFAULT_CONFIG: ToastConfig = {
+  autoClose: true,
+  duration: 8000,
+  component: BasicToastContentComponent,
+};
 
 @Injectable()
 export class Toaster {
@@ -16,12 +20,13 @@ export class Toaster {
   ) {
   }
 
-  open(text: string): Toast;
-  open(config: ToastConfig): Toast;
-  open(component: Type<any>, config?: ToastConfig): Toast;
-  open(config: ToastConfig | string | Type<any>, componentConfig?: ToastConfig): Toast {
+  open(text: string): Toast | null;
+  open(config: ToastConfig): Toast | null;
+  open(text: string, config?: ToastConfig): Toast | null;
+  open(component: Type<any>, config?: ToastConfig): Toast | null;
+  open(config: ToastConfig | string | Type<any>, componentConfig?: ToastConfig): Toast | null {
     if (typeof config === 'string') {
-      config = {text: config as string};
+      config = {text: config as string, ...componentConfig};
     }
     if (config instanceof Type) {
       config = {...componentConfig, component: config as Type<any>};

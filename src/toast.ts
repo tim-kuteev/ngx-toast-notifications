@@ -5,21 +5,23 @@ import { ToastConfig } from './toast.config';
 
 export class Toast {
 
+  readonly autoClose: boolean;
   readonly duration: number;
   readonly text: string;
   readonly caption: string;
   readonly type: ToastType;
   readonly component: Type<any>;
 
-  private readonly _closeFunction: Function;
+  private readonly _closeFunction: (toast: Toast) => void;
   private readonly _onClose = new Subject<any>();
   private _timeoutId: any;
 
   constructor(
       config: ToastConfig,
-      closeFunction: Function,
+      closeFunction: (toast: Toast) => void,
   ) {
-    this.duration = config.duration;
+    this.autoClose = config.autoClose;
+    this.duration = config.duration > 0 ? config.duration : 0;
     this.text = config.text;
     this.caption = config.caption;
     this.type = config.type;
@@ -42,7 +44,7 @@ export class Toast {
   }
 
   private _setTimeout() {
-    if (this.duration > 0) {
+    if (this.autoClose && this.duration > 0) {
       this._timeoutId = setTimeout(() => this.close(), this.duration);
     }
   }

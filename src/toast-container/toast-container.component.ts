@@ -34,22 +34,34 @@ const progressTransition = transition('void => *', [
 })
 export class ToastContainerComponent {
 
-  toasts: Set<Toast> = new Set<Toast>();
+  toasts: Toast[];
 
   constructor(
-      private _changeDetector: ChangeDetectorRef,
+    private _changeDetector: ChangeDetectorRef,
   ) {
   }
 
-  add(config: ToastConfig): Toast {
-    const toast = new Toast(config, this._delete.bind(this));
-    this.toasts.add(toast);
+  add(config: ToastConfig): Toast | null {
+    if (config.preventDuplicates && this._isDuplicate(config)) {
+      return null;
+    }
+    const toast = new Toast(config, (t) => this._delete(t));
+    this.toasts.push(toast);
     this._changeDetector.detectChanges();
     return toast;
   }
 
-  private _delete(toast: Toast) {
-    this.toasts.delete(toast);
+  private _delete(toast: Toast): void {
+    this.toasts.splice(this.toasts.indexOf(toast), 1);
     this._changeDetector.detectChanges();
+  }
+
+  private _isDuplicate(config: ToastConfig): boolean {
+    return this.toasts.some(t => {
+      return t.type === config.type
+        && t.component === config.component
+        && t.caption === config.caption
+        && t.text === config.text;
+    })
   }
 }

@@ -23,6 +23,7 @@ import { ToastContainerService } from './toast-container.service';
   providers: [
     Toaster,
     ToastContainerService,
+    {provide: TOAST_NOTIFICATIONS_CONFIG, useValue: {}},
   ],
 })
 export class ToastNotificationsModule {
@@ -37,7 +38,7 @@ export class ToastNotificationsModule {
     return {
       ngModule: ToastNotificationsModule,
       providers: [
-        {provide: TOAST_NOTIFICATIONS_CONFIG, useValue: config}
+        {provide: TOAST_NOTIFICATIONS_CONFIG, useValue: config},
       ]
     };
   }
