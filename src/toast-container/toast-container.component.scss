@@ -1,5 +1,4 @@
 $break-small: 576px;
-$break-medium: 768px;
 
 $primary-color: #007bff;
 $secondary-color: #868e96;
@@ -14,8 +13,6 @@ $text-color: #212529;
 .toast-panel {
   z-index: 900;
   position: fixed;
-  bottom: 0;
-  right: 0;
   width: 100%;
   font-size: 1rem;
   line-height: 1.5;
@@ -28,14 +25,46 @@ $text-color: #212529;
       Arial,
       sans-serif;
 
-  @media (min-width: $break-small) {
-    bottom: 1rem;
-    right: 1rem;
-    max-width: 20rem;
+  @media (max-width: $break-small - 1) {
+    bottom: 0;
+    right: 0;
+    left: 0;
   }
 
-  @media (min-width: $break-medium) {
-    bottom: 2rem;
+  @media (min-width: $break-small) {
+    max-width: 20rem;
+
+    &.top-left {
+      top: 0;
+      left: 1rem;
+    }
+
+    &.top-center {
+      top: 0;
+      left: 50%;
+      margin-left: -10rem;
+    }
+
+    &.top-right {
+      top: 0;
+      right: 1rem;
+    }
+
+    &.bottom-left {
+      bottom: 1rem;
+      left: 1rem;
+    }
+
+    &.bottom-center {
+      bottom: 1rem;
+      left: 50%;
+      margin-left: -10rem;
+    }
+
+    &.bottom-right {
+      bottom: 1rem;
+      right: 1rem;
+    }
   }
 }
 

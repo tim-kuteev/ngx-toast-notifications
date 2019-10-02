@@ -1,10 +1,30 @@
-<div class="toast-panel">
+<ng-template #toastPanel let-toasts>
   <div *ngFor="let toast of toasts" [@nested]>
     <div class="toast-card" [ngClass]="toast.type || 'light'" [@shrink]>
       <ng-template toastContent [toast]="toast"></ng-template>
-      <div class="lifetime-progress"
+      <div *ngIf="toast.autoClose"
+           class="lifetime-progress"
            role="progressbar"
            [@progress]="{value: '*', params: {duration: toast.duration + 'ms'}}"></div>
     </div>
   </div>
+</ng-template>
+
+<div class="toast-panel top-left">
+  <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: tl}"></ng-container>
+</div>
+<div class="toast-panel top-center">
+  <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: tc}"></ng-container>
+</div>
+<div class="toast-panel top-right">
+  <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: tr}"></ng-container>
+</div>
+<div class="toast-panel bottom-left">
+  <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: bl}"></ng-container>
+</div>
+<div class="toast-panel bottom-center">
+  <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: bc}"></ng-container>
+</div>
+<div class="toast-panel bottom-right">
+  <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: br}"></ng-container>
 </div>
