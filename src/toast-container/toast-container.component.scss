@@ -10,9 +10,23 @@ $light-color: #f8f9fa;
 $dark-color: #343a40;
 $text-color: #212529;
 
-.toast-panel {
-  z-index: 900;
+.toast-overlay {
+  pointer-events: none;
   position: fixed;
+  z-index: 9000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  @media (max-width: $break-small - 1) {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+  }
+}
+
+.toast-panel {
   width: 100%;
   font-size: 1rem;
   line-height: 1.5;
@@ -25,13 +39,8 @@ $text-color: #212529;
       Arial,
       sans-serif;
 
-  @media (max-width: $break-small - 1) {
-    bottom: 0;
-    right: 0;
-    left: 0;
-  }
-
   @media (min-width: $break-small) {
+    position: absolute;
     max-width: 20rem;
 
     &.top-left {
@@ -69,10 +78,8 @@ $text-color: #212529;
 }
 
 .toast-card {
-  position: relative;
+  pointer-events: auto;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
   background-clip: border-box;
   min-width: 0;
   background-color: $light-color;

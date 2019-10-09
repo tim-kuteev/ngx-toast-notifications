@@ -10,21 +10,23 @@
   </div>
 </ng-template>
 
-<div class="toast-panel top-left">
-  <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: tl}"></ng-container>
-</div>
-<div class="toast-panel top-center">
-  <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: tc}"></ng-container>
-</div>
-<div class="toast-panel top-right">
-  <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: tr}"></ng-container>
-</div>
-<div class="toast-panel bottom-left">
-  <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: bl}"></ng-container>
-</div>
-<div class="toast-panel bottom-center">
-  <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: bc}"></ng-container>
-</div>
-<div class="toast-panel bottom-right">
-  <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: br}"></ng-container>
+<div class="toast-overlay">
+  <div class="toast-panel top-center">
+    <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: tc}"></ng-container>
+  </div>
+  <div class="toast-panel top-left">
+    <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: tl}"></ng-container>
+  </div>
+  <div class="toast-panel top-right">
+    <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: tr}"></ng-container>
+  </div>
+  <div class="toast-panel bottom-center">
+    <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: bc}"></ng-container>
+  </div>
+  <div class="toast-panel bottom-left">
+    <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: bl}"></ng-container>
+  </div>
+  <div class="toast-panel bottom-right">
+    <ng-container *ngTemplateOutlet="toastPanel; context: {$implicit: br}"></ng-container>
+  </div>
 </div>

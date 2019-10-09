@@ -8,6 +8,7 @@ import { Toast } from './toast';
 const DEFAULT_CONFIG: ToastConfig = {
   autoClose: true,
   duration: 8000,
+  type: 'light',
   position: 'bottom-right',
   component: BasicToastContentComponent,
 };

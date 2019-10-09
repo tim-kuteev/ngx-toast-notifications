@@ -1,5 +1,10 @@
 $break-small: 576px;
 
+:host{
+  display: block;
+  position: relative;
+}
+
 .close-button {
   border: 0;
   background: none;
