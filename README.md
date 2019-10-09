@@ -23,7 +23,7 @@ import { ToastNotificationsModule } from 'ngx-toast-notifications';
   imports: [
     ...
     BrowserAnimationsModule, // required
-    ToastNotificationsModule.forRoot(),
+    ToastNotificationsModule,
   ],
   ...
 })
@@ -55,6 +55,9 @@ export class MyComponent {
 
 ## Configurations
 
+Toasts scale to match the size of the page content by using relative font sizing. To change the size of the toast
+simply change font size of the **html** element.
+
 `Toaster.open` returns a `Toast` object. This can be used to close toast or subscribe for an event when the toast is closed.
 
 ```typescript
@@ -71,11 +74,19 @@ toast.close('success');
 
 Global toast configuration that you can specify when importing the ToastNotificationsModule.
 
-| Parameter     | Type                          | Description                                                                        |
-| ------------- | ----------------------------- | ---------------------------------------------------------------------------------- |
-| duration      | number                        | The length of time in milliseconds before dismissing (default value is 8 sec)     |
-| type          | ToastType                     | Type of toast color scheme                                                         |
-| component     | Type from '@angular/core'     | Custom component to replace default toast content (more on that below)             |
+| Parameter         | Type                          | Description                                                                                                         |
+| ----------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| position          | **ToastPosition**             | The position to place the toasts on the screen (default value is 'bottom-right')                                    |
+| autoClose         | boolean                       | Determines if the toasts will automatically close after the specified time (default value is true)                  |
+| duration          | number                        | The length of time in milliseconds before dismissing (default is 8 sec)                                             |
+| type              | **ToastType**                 | Color scheme type of the toasts                                                                                     |
+| component         | **Type** from '@angular/core' | Custom component to replace default toast content (more on that below)                                              |
+| preventDuplicates | boolean                       | Determines if the toast will be rejected when the one with same content is already present (default value is false) |
+
+#### ToastPosition
+```typescript
+'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
+```
 
 #### ToastType
 ```typescript
@@ -88,25 +99,43 @@ ngx-toast-notifications without Bootstrap installed.
 #### Example
 
 ```typescript
-ToastNotificationsModule.forRoot({duration: 6000, type: 'primary', component: MyComponent}),
+imports: [
+  ToastNotificationsModule.forRoot({duration: 6000, type: 'primary'})
+],
 ```
 
+#### or
+
+```typescript
+imports: [
+  ToastNotificationsModule,
+],
+providers: [
+  {provide: TOAST_NOTIFICATIONS_CONFIG, useValue: {duration: 6000, type: 'primary'}},
+]
+```
 
 ### ToastConfig
 *extends **ToastNotificationsConfig***
 
 Configuration for a specific toast.
 
-| Parameter     | Type                          | Description                                                                        |
-| ------------- | ----------------------------- | ---------------------------------------------------------------------------------- |
-| text          | string                        | Main text for the toast                                                            |
-| caption       | string                        | Toast caption                                                                      |
+| Parameter         | Type                          | Description                                                                                                         |
+| ----------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| text              | string                        | Main text for the toast                                                                                             |
+| caption           | string                        | Toast caption                                                                                                       |
+| position          | **ToastPosition**             | The position to place the toast on the screen (default value is 'bottom-right')                                     |
+| autoClose         | boolean                       | Determines if the toast will automatically close after the specified time (default value is true)                   |
+| duration          | number                        | The length of time in milliseconds before dismissing (default is 8 sec)                                             |
+| type              | **ToastType**                 | Color scheme type of the toast                                                                                      |
+| component         | **Type** from '@angular/core' | Custom component to replace default toast content (more on that below)                                              |
+| preventDuplicates | boolean                       | Determines if the toast will be rejected when the one with same content is already present (default value is false) |
 
 
 #### Example
 
 ```typescript
-this.toaster.open({text: 'Pizza party', caption: 'Hooray', duration: 4000, type: 'primary', component: MyComponent});
+this.toaster.open({text: 'Pizza party', caption: 'Hooray', duration: 4000, type: 'primary', component: MyCustomComponent});
 ```
 
 ## Custom Toasts
@@ -157,7 +186,7 @@ ToastNotificationsModule.forRoot({component: CustomToastComponent}),
 this.toaster.open(CustomToastComponent, {text: 'This is text for custom toast'});
 ```
 
-#### [Stackblitz example](https://stackblitz.com/edit/ngx-toast-notifications-custom?embed=1&file=app/app.component.ts&hideExplorer=1)
+**[Stackblitz demo of Custom Toast](https://stackblitz.com/edit/ngx-toast-notifications-custom?embed=1&file=app/app.component.ts&hideExplorer=1)**
 
 ## License
 
