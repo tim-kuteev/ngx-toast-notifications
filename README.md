@@ -51,7 +51,7 @@ export class MyComponent {
 
 ## Demo
 
-**[Try interactive demo on stackblitz](https://stackblitz.com/edit/ngx-toast-notifications?embed=1&file=app/app.component.ts&hideExplorer=1)**
+**[Try interactive demo on stackblitz](https://stackblitz.com/edit/ngx-toast-notifications?embed=1&file=app/app.component.ts)**
 
 ## Configurations
 
@@ -186,7 +186,7 @@ ToastNotificationsModule.forRoot({component: CustomToastComponent}),
 this.toaster.open(CustomToastComponent, {text: 'This is text for custom toast'});
 ```
 
-**[Stackblitz demo of Custom Toast](https://stackblitz.com/edit/ngx-toast-notifications-custom?embed=1&file=app/app.component.ts&hideExplorer=1)**
+**[Stackblitz demo of Custom Toast](https://stackblitz.com/edit/ngx-toast-notifications-custom?embed=1&file=app/app.module.ts&hideExplorer=1)**
 
 ## License
 
