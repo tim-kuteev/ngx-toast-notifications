@@ -1,0 +1,27 @@
+{
+  "name": "ngx-toast-notifications",
+  "version": "1.3.0",
+  "author": "Tim",
+  "description": "Toast notifications for Angular applications",
+  "main": "./src/index.ts",
+  "peerDependencies": {
+    "@angular/animations": ">=6.0.0",
+    "@angular/cdk": ">=6.0.0",
+    "@angular/core": ">=6.0.0",
+    "@angular/common": ">=6.0.0"
+  },
+  "keywords": [
+    "angular",
+    "toast",
+    "notification"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tim-kuteev/ngx-toast-notifications.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tim-kuteev/ngx-toast-notifications/issues"
+  },
+  "homepage": "https://github.com/tim-kuteev/ngx-toast-notifications#readme",
+  "license": "MIT"
+}
