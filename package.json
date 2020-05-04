@@ -8,7 +8,7 @@
     "build:app": "ng build",
     "build:lib": "ng build ngx-toast-notifications",
     "test": "ng test",
-    "test:ci": "npm run test:app -- --no-watch --no-progress --browsers=headless",
+    "test:ci": "npm run test -- --no-watch --no-progress --browsers=headless",
     "test:lib": "ng test ngx-toast-notifications",
     "e2e": "ng e2e",
     "e2e:ci": "npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js",
