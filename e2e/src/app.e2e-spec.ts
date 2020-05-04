@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display title text', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('ngx-toast-notifications app is running!');
+    expect(page.getTitleText()).toEqual('Angular Toast Notifications');
   });
 
   afterEach(async () => {

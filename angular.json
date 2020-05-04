@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-toast-notifications-test": {
+    "ngx-toast-notifications-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -11,24 +11,24 @@
         }
       },
       "root": "",
-      "sourceRoot": "test",
+      "sourceRoot": "app/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-toast-notifications-test",
-            "index": "test/index.html",
-            "main": "test/main.ts",
-            "polyfills": "test/polyfills.ts",
-            "tsConfig": "test/tsconfig.json",
-            "aot": false,
+            "outputPath": "dist/ngx-toast-notifications-app",
+            "index": "app/src/index.html",
+            "main": "app/src/main.ts",
+            "polyfills": "app/src/polyfills.ts",
+            "tsConfig": "app/tsconfig.json",
+            "aot": true,
             "assets": [
-              "test/favicon.ico",
-              "test/assets"
+              "app/src/favicon.ico",
+              "app/src/assets"
             ],
             "styles": [
-              "test/styles.scss"
+              "app/src/styles.scss"
             ],
             "scripts": []
           },
@@ -36,8 +36,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "test/environments/environment.ts",
-                  "with": "test/environments/environment.prod.ts"
+                  "replace": "app/src/environments/environment.ts",
+                  "with": "app/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -45,7 +45,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -67,33 +66,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-toast-notifications-test:build"
+            "browserTarget": "ngx-toast-notifications-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-toast-notifications-test:build:production"
+              "browserTarget": "ngx-toast-notifications-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-toast-notifications-test:build"
+            "browserTarget": "ngx-toast-notifications-app:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "test/test.ts",
-            "polyfills": "test/polyfills.ts",
-            "tsConfig": "test/tsconfig.spec.json",
-            "karmaConfig": "karma.conf.test.js",
+            "main": "app/src/test.ts",
+            "polyfills": "app/src/polyfills.ts",
+            "tsConfig": "app/tsconfig.spec.json",
+            "karmaConfig": "app/karma.conf.js",
             "assets": [
-              "test/favicon.ico",
-              "test/assets"
+              "app/src/favicon.ico",
+              "app/src/assets"
             ],
             "styles": [
-              "test/styles.scss"
+              "app/src/styles.scss"
             ],
             "scripts": []
           }
@@ -102,8 +101,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "test/tsconfig.json",
-              "test/tsconfig.spec.json",
+              "app/tsconfig.json",
+              "app/tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
             "exclude": [
@@ -115,11 +114,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-toast-notifications-test:serve"
+            "devServerTarget": "ngx-toast-notifications-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngx-toast-notifications-test:serve:production"
+              "devServerTarget": "ngx-toast-notifications-app:serve:production"
             }
           }
         }
@@ -143,11 +142,11 @@
           "options": {
             "main": "lib/test.ts",
             "tsConfig": "lib/tsconfig.spec.json",
-            "karmaConfig": "karma.conf.lib.js"
+            "karmaConfig": "lib/karma.conf.js"
           }
         }
       }
     }
   },
-  "defaultProject": "ngx-toast-notifications-test"
+  "defaultProject": "ngx-toast-notifications-app"
 }
