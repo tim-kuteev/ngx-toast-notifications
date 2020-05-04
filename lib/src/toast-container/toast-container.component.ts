@@ -69,7 +69,7 @@ export class ToastContainerComponent {
         && t.component === config.component
         && t.caption === config.caption
         && t.text === config.text;
-    })
+    });
   }
 
   private _getCollection(position: ToastPosition): Toast[] {

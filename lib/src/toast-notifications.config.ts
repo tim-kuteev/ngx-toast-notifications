@@ -6,7 +6,7 @@ export type ToastType = 'primary' | 'secondary' | 'success' | 'danger' | 'warnin
 export type ToastPosition = 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
 
 export interface ToastNotificationsConfig {
-  position?: ToastPosition
+  position?: ToastPosition;
   autoClose?: boolean;
   duration?: number;
   type?: ToastType;

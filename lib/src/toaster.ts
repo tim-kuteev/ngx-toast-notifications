@@ -22,7 +22,6 @@ export class Toaster {
   ) {
   }
 
-  open(text: string): Toast | null;
   open(config: ToastConfig): Toast | null;
   open(text: string, config?: ToastConfig): Toast | null;
   open(component: Type<any>, config?: ToastConfig): Toast | null;
