@@ -7,7 +7,7 @@
     "build": "npm run build:app",
     "build:app": "ng build",
     "build:lib": "ng build ngx-toast-notifications",
-    "build:ci": "npm run build:app -- --prod",
+    "build:ci": "npm run build:app -- --prod --base-href=/ngx-toast-notifications/",
     "test": "npm run test:app",
     "test:app": "ng test ngx-toast-notifications-app",
     "test:lib": "ng test ngx-toast-notifications",
