@@ -1,5 +1,4 @@
-// Karma configuration file, see link for more information
-// https://karma-runner.github.io/1.0/config/configuration-file.html
+process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = {
   basePath: '',
@@ -12,7 +11,7 @@ module.exports = {
     require('@angular-devkit/build-angular/plugins/karma'),
   ],
   client: {
-    clearContext: false
+    clearContext: false,
   },
   coverageIstanbulReporter: {
     dir: require('path').join(__dirname, 'coverage'),
@@ -22,14 +21,15 @@ module.exports = {
   reporters: ['progress', 'kjhtml'],
   port: 9876,
   colors: true,
+  logLevel: 'INFO',
   autoWatch: true,
   browsers: ['Chrome'],
   customLaunchers: {
     headless: {
       base: 'ChromeHeadless',
-      flags: ['--no-sandbox'],
+      flags: ['--no-sandbox', '--disable-gpu'],
     },
   },
   singleRun: false,
-  restartOnFileChange: true
+  restartOnFileChange: true,
 };

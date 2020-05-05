@@ -6,10 +6,13 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './src/**/*.e2e-spec.ts'
+    './src/**/*.e2e-spec.ts',
   ],
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'chrome',
+    chromeOptions: {
+      binary: require('puppeteer').executablePath(),
+    },
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
@@ -17,7 +20,7 @@ exports.config = {
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
-    print: function() {}
+    print: function() {},
   },
   onPrepare() {
     require('ts-node').register({

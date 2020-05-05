@@ -98,9 +98,9 @@
           },
           "configurations": {
             "ci": {
+              "browsers": "headless",
               "watch": false,
-              "progress": false,
-              "browsers": "headless"
+              "progress": false
             }
           }
         },
@@ -121,7 +121,8 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-toast-notifications-app:serve"
+            "devServerTarget": "ngx-toast-notifications-app:serve",
+            "webdriverUpdate": false
           },
           "configurations": {
             "production": {
@@ -129,7 +130,7 @@
             },
             "ci": {
               "devServerTarget": "ngx-toast-notifications-app:serve:production",
-              "protractorConfig": "e2e/protractor-ci.conf.js"
+              "protractorConfig": "e2e/protractor.ci.conf.js"
             }
           }
         }
@@ -154,6 +155,13 @@
             "main": "lib/test.ts",
             "tsConfig": "lib/tsconfig.spec.json",
             "karmaConfig": "lib/karma.conf.js"
+          },
+          "configurations": {
+            "ci": {
+              "browsers": "headless",
+              "watch": false,
+              "progress": false
+            }
           }
         }
       }

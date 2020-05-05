@@ -7,12 +7,15 @@
     "build": "npm run build:app",
     "build:app": "ng build",
     "build:lib": "ng build ngx-toast-notifications",
-    "test": "ng test",
-    "test:ci": "npm run test -- --configuration=ci",
+    "build:ci": "npm run build:app -- --prod",
+    "test": "npm run test:app",
+    "test:app": "ng test ngx-toast-notifications-app",
     "test:lib": "ng test ngx-toast-notifications",
+    "test:ci": "npm run test:app -- --configuration=ci && npm run test:lib -- --configuration=ci",
     "e2e": "ng e2e",
     "e2e:ci": "npm run e2e -- --configuration=ci",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "postinstall": "webdriver-manager update --standalone false --gecko false --versions.chrome 80.0.3987.106"
   },
   "private": false,
   "dependencies": {
@@ -47,6 +50,7 @@
     "karma-jasmine-html-reporter": "^1.4.2",
     "ng-packagr": "^9.1.2",
     "protractor": "~5.4.3",
+    "puppeteer": "chrome-80",
     "ts-node": "~8.3.0",
     "tsickle": "^0.38.1",
     "tslint": "~6.1.0",
