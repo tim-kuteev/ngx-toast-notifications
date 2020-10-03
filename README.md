@@ -166,7 +166,7 @@ export class CustomToastComponent {
     ...
     CustomToastComponent,
   ],
-   // for the Angular befiore version 9 the following declaration is also required for imperative loading
+   // for the Angular before version 9 the following declaration is also required for imperative loading
   /* entryComponents: [
     CustomToastComponent,
   ], */
