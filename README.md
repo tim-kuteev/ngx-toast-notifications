@@ -166,9 +166,10 @@ export class CustomToastComponent {
     ...
     CustomToastComponent,
   ],
-  entryComponents: [
-    CustomToastComponent, // this declaration is required for imperative loading
-  ],
+   // for the Angular befiore version 9 the following declaration is also required for imperative loading
+  /* entryComponents: [
+    CustomToastComponent,
+  ], */
   ...
 })
 export class AppModule {}
